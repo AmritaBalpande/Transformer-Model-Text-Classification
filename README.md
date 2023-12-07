@@ -2,6 +2,7 @@
 Transformers, with their powerful self-attention mechanism, have revolutionized the field of natural language processing (NLP). They excel at various tasks, including text classification, where the goal is to assign a predefined category or label to a piece of text.This report details the development and evaluation of a simple transformer-based model for text Classification on the IMDb movie review dataset uing BERT.
 
 Steps to Run the Code:
+
 You need to set up a new environment on your computer. However, it is not compulsory to use your local machine, you can train a model on, let's say Google Colab and download the trained model to server the requests for classification.
 
 Install required packages
@@ -32,7 +33,7 @@ from transformers import AutoTokenizer
 tokenizer = AutoTokenizer.from_pretrained('bert-base-uncased')
 
 
-Now, let's process the data in the CSV file, for this I will write a function, in this function the tokenizer uses max_length=128, you can increase that, but since I am just showing the workings, I will use 128.
+Now, process the data in the CSV file, for this I will write a function, in this function the tokenizer uses max_length=128, you can increase that, but since I am just showing the workings, I will use 128.
 from typing import Dict
 
     def process_data(row) -> Dict:
@@ -65,6 +66,7 @@ from typing import Dict
   Generate the dataset
   Generate the dataset in a format required by the Trainer module of the transformers library.
   The code piece below converts the list of encodings into a data frame and split that into a training and validation set of data.
+  
   from sklearn.model_selection import train_test_split
 
     new_df = pd.DataFrame(processed_data)
@@ -172,3 +174,11 @@ The following piece of code will initialize a Bert base uncased model for our tr
 
 
     get_prediction('I am happy to see you.')
+
+
+
+Challenges and Limitations
+
+Hyperparameter tuning: Finding the optimal hyperparameters required experimentation and careful evaluation.
+Limited training data: Larger datasets could potentially improve model performance.
+Overfitting: The model showed signs of overfitting, requiring regularization techniques like dropout.
